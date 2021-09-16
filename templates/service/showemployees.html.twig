@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service :
+	{{ service }}
+{% endblock %}
+
+{% block header %}
+	<section class="d-flex container justify-content-around mt-2">
+		<a href="{{ path('homepage') }}" class="btn btn-primary">Acueil</a>
+		<a href="{{ path('admin') }}" class="btn btn-primary">Admin</a>
+	</section>
+    <h1><img src="/images/corporate-company-logo-design-template-2402e0689677112e3b2b6e0f399d7dc3_screen.jpg">Bienvenu sur la liste des services de l'entreprise</h1>
+{% endblock %}
+
+{% block body %}
+	<main class="container">
+		<section class="">
+            <h2>
+                Liste des employés du service : {{ service }}</h2>
+            <article class="d-flex">
+                <p>
+                    <strong>Les missions : </strong></p>{{ service.mission|raw }}
+            </article>
+        </section>
+
+		{% if employees|length > 0 %}
+			<div>Il y a
+				{{ employees|length }}
+				employé(e)s.</div>
+			<section class="mt-4">
+				{% for employee in employees %}
+					<article class="border border-primary">
+						<div class="">
+							<img src="/uploads/{{ employee.picture }}" alt="image {{ employee.picture }}">
+							<h4 class="ml-4">{{ employee.surname }}
+								{{ employee.name }}</h4>
+						</div>
+						<p>{{ employee.jobtitle }}</p>
+						<p>{{ employee.biography|raw }}</p>
+					</article>
+				{% endfor %}
+
+			</section>
+		{% else %}
+			<div>No comments have been posted yet for this conference.</div>
+		{% endif %}
+	</main>
+
+{% endblock %}
+
+{% block footer %}
+	<section class="d-flex container justify-content-around">
+        <article class="border border-primary">
+            <h3>CORPORATE</h3>
+            <h4>adresse</h4>
+            <h4>code postale ville</h4>
+            <h4>pays</h4>
+        </article>
+        <article class="border border-primary">
+            <h4>Tél: 00 00 00 00 00</h4>
+            <h4>Email: contact@corporate.com <h4>
+        </article>
+    </section>
+{% endblock %}

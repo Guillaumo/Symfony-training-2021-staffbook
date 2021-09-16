@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les services de l'entreprise
+{% endblock %}
+
+{% block header %}
+	<section class="d-flex container justify-content-around mt-2">
+		<a href="{{ path('homepage') }}" class="btn btn-primary">Acueil</a>
+		<a href="{{ path('admin') }}" class="btn btn-primary">Admin</a>
+	</section>
+    <h1><img src="/images/corporate-company-logo-design-template-2402e0689677112e3b2b6e0f399d7dc3_screen.jpg">Bienvenu sur la liste des services de l'entreprise</h1>
+{% endblock %}
+
+{% block body %}
+
+	<main class="container">
+		
+		<section class="mt-4">
+			{% for service in services %}
+				<article class="mb-4 border border-primary">
+					<h4>Service :
+						{{ service }}</h4>
+					{# raw permet de traduire le html en texte #}
+					<p class="">Missions :
+						{{service.mission|raw}}</p>
+					{# path() permet d'insérer une chemin relatif dynamique #}
+					<a href="{{ path('service', { id: service.id }) }}" class="btn btn-primary mb-2">Voir les employés du service</a>
+				</article>
+
+			{% endfor %}
+		</section>
+
+	</main>
+{% endblock %}
+{% block footer %}
+    <section class="d-flex container justify-content-around">
+        <article class="border border-primary">
+            <h3>CORPORATE</h3>
+            <h4>adresse</h4>
+            <h4>code postale ville</h4>
+            <h4>pays</h4>
+        </article>
+        <article class="border border-primary">
+            <h4>Tél: 00 00 00 00 00</h4>
+            <h4>Email: contact@corporate.com <h4>
+        </article>
+    </section>
+{% endblock %}
